@@ -1,5 +1,14 @@
 #include "simple_shell.h"
 
+/**
+ * _getline - Puts input from the user into buffer line.
+ * @lineptr: Buffer for user input.
+ * @size: n bytes in size.
+ * @stream: Reads an entire line from stream.
+ *
+ * Return: The number of characters read.
+ */
+
 int _getline(char **lineptr, size_t *size, int stream)
 {
 	int rd = 0;
