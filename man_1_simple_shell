@@ -1,0 +1,57 @@
+.TH SIMPLE_SHELL "1" "August 20, 2020" "Simple Shell Manual Page"
+
+.SH NAME
+.B hsh
+Simulate sh (sh is a shell or command line interpreter for computer operating systems).
+.PP
+
+.SH SYNOPSIS
+.B ./hsh
+.PP
+
+.SH Description
+This is a simple command line interpreter that simulates the execution of sh, the commands are read from standard input.
+
+.SH Invocation
+This program can be used in both interactive and non-interactive mode.
+User input line echo non-interactively accepted "/ bin / ls" | ./hsh. and interactively ./hsh ls. Each line is read and separated by tokens and then executed.
+
+To run this shell in local space, you must compile all the .c files in the repository with the GNU Comiler Collectio and run the output file as follows:
+.P
+.RS
+.B $ gcc -Wall -Werror -Wextra -pedantic -g *.c -o hsh
+.P
+.RE
+Where hsh would be the file to execute:
+.RS
+.B $ ./hsh
+.P
+.RE
+
+.SH BUILT-IN
+.RS information on built-in commands
+.B  env
+- Typing env from standard input prints all simple shell environment variables.
+.PP
+.B  exit
+- To exit from the shell you type.
+
+.SH PATH
+.RS Environmental variable.
+.RE
+Sets or displays directories that will be searched for programs not in the current directory. Writing PATH from the standard input will obtain the value of this environment variable, that is, all the directories where executable files are found (ready to run programs).
+
+.SH Special Parameters
+.IP None
+This shell does not handle with special characters.
+
+.SH SEE ALSO
+sh(1)
+
+.SH BUGS
+No known bugs.
+
+.SH AUTHORS
+Vanesa Sotomayor
+.PP
+Jiseth Pena Arias
