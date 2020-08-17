@@ -19,19 +19,15 @@ int forking(char *executableDir, char **commands)
 	if (value == -1)
 		return (1);
 
-	if (value == 0)
+	if (value == 0 && _execve(executableDir, commands, NULL) == -1)
 	{
-		if (_execve(executableDir, commands, NULL) == -1)
-		{
-			sprintf(error_info, "hsh: %s: not found\n", *commands);
-			write(2, error_info, _strlen(error_info));
-			exit(1);
-		}
+		sprintf(error_info, "hsh: %s: not found\n", *commands);
+	        write(2, error_info, _strlen(error_info));
+	        exit(1);
 	}
 	else
 	{
 		wait(&status);
-		return (0);
 	}
 
 	return (0);

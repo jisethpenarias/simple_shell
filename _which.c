@@ -12,6 +12,7 @@ char *_which(char *pathVariable, char *commandSearched)
 {
 	struct stat buf;
 	char *dirObtained;
+	char error_info[100];
 	char *dirCopied;
 
 	dirObtained = strtok(pathVariable, ":");
@@ -26,10 +27,14 @@ char *_which(char *pathVariable, char *commandSearched)
 		}
 		dirObtained = strtok(NULL, ":");
 	}
-	/**
-	 * if (dirObtained == NULL)
-	 * printf("NOT FOUND\n");
-	 */
 
+	if (dirObtained == NULL)
+	{
+		sprintf(error_info, "hsh: %s: not found\n",
+			commandSearched);
+		write(2, error_info, _strlen(error_info));
+	}
+
+	free(dirCopied);
 	return (NULL);
 }

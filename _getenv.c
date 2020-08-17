@@ -14,24 +14,27 @@ char *_getenv(char *var)
 	char *env;
 	char *envValue;
 
-	envValue = malloc(sizeof(char) * 1024);
+	envValue = malloc(sizeof(char) * MAX_BUFFER_SIZE);
 	if (envValue == NULL)
 		return (NULL);
 
-	env = malloc(sizeof(char) * 1024);
+	env = malloc(sizeof(char) * MAX_BUFFER_SIZE);
 	if (env == NULL)
 		return (NULL);
 
 	while (environ[i] != NULL)
 	{
-		strcpy(env, environ[i]);
+		_strcpy(env, environ[i]);
 		value = strtok(env, "=");
-		if (strcmp(value, var) == 0)
+		if (_strcmp(value, var) == 0)
 		{
-			strcpy(envValue, strtok(NULL, "="));
+			_strcpy(envValue, strtok(NULL, "="));
+			/*free(env);*/
 			return (envValue);
 		}
 		i++;
 	}
+	/*free(envValue);
+	  free(env);*/
 	return (NULL);
 }

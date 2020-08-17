@@ -18,6 +18,7 @@ int builtins(char *firstToken)
 		{NULL, NULL}
 	};
 
+	printf("%s\n", firstToken);
 	i = 0;
 
 	while (built[i].name != NULL)

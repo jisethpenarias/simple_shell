@@ -12,6 +12,9 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#define MAX_BUFFER_SIZE 1024
+#define SPLIT_STRING "\n\t\r "
+
 extern char **environ;
 
 /**
@@ -41,5 +44,6 @@ char *_strdup(char *str);
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
+char **tokenizer(char *line);
 
 #endif
