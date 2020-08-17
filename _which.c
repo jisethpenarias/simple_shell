@@ -1,5 +1,13 @@
 #include "simple_shell.h"
 
+/**
+ * _which - Search a command of the PATH.
+ * @pathVariable: PATH variable.
+ * @commandSearched: Command to search.
+ *
+ * Return: Return 0.
+ */
+
 char *_which(char *pathVariable, char *commandSearched)
 {
 	struct stat buf;
@@ -18,10 +26,10 @@ char *_which(char *pathVariable, char *commandSearched)
 		}
 		dirObtained = strtok(NULL, ":");
 	}
-	/*
-	  if (dirObtained == NULL)
-	   printf("NOT FOUND\n");
-	*/
+	/**
+	 * if (dirObtained == NULL)
+	 * printf("NOT FOUND\n");
+	 */
 
 	return (NULL);
 }

@@ -4,6 +4,7 @@ int main(void)
 {
 	/* holder for first line received on shell */
 	char *line = NULL;
+	char error_info[100];
         size_t len;
 
 	/*related to the command and flags splited*/
@@ -24,6 +25,7 @@ int main(void)
 
 		if(getline(&line, &len, stdin) == EOF)
 		{
+			write(STDIN_FILENO, "\n", 1);
 			free(line);
 			exit(0);
 		}
@@ -55,6 +57,12 @@ int main(void)
 		 el comando recibido no esta en builtins*/
 		path = _getenv("PATH");
 		commandPath = _which(path, commandTokens[0]);
+		if (commandPath == NULL)
+		{
+			sprintf(error_info, "hsh: %s: not found\n", commandTokens[0]);
+			write(2, error_info, _strlen(error_info));
+			return (127);
+		}
 		/* /bin/ls */
 		/*int forking(char *executableDir, char **commands)*/
 		forking(commandPath, commandTokens);

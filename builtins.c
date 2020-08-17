@@ -1,8 +1,12 @@
 #include "simple_shell.h"
+
 /**
- * builtins: check for builtins on our shell
- * @firstToken: first token sended for verify buildtin related
- **/
+ * builtins - Check for builtins on our shell.
+ * @firstToken: First token sended for verify buildtin related.
+ *
+ * Return: Status or 1 if it fail.
+ */
+
 int builtins(char *firstToken)
 {
 	int i;

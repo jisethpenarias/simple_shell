@@ -1,5 +1,12 @@
 #include "simple_shell.h"
 
+/**
+ * _getenv - Gets an environment variable.
+ * @var: Environment variable to get.
+ *
+ * Return: Pointer to an environment variable or NULL if not found.
+ */
+
 char *_getenv(char *var)
 {
 	char *value;
@@ -7,7 +14,7 @@ char *_getenv(char *var)
 	char *env;
 	char *envValue;
 
-	envValue = malloc(sizeof(char)* 1024);
+	envValue = malloc(sizeof(char) * 1024);
 	if (envValue == NULL)
 		return (NULL);
 
@@ -19,7 +26,7 @@ char *_getenv(char *var)
 	{
 		strcpy(env, environ[i]);
 		value = strtok(env, "=");
-		if (strcmp(value,var) == 0)
+		if (strcmp(value, var) == 0)
 		{
 			strcpy(envValue, strtok(NULL, "="));
 			return (envValue);
