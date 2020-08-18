@@ -29,12 +29,12 @@ char *_getenv(char *var)
 		if (_strcmp(value, var) == 0)
 		{
 			_strcpy(envValue, strtok(NULL, "="));
-			/*free(env);*/
+			free(env);
 			return (envValue);
 		}
 		i++;
 	}
-	/*free(envValue);
-	  free(env);*/
+	free(envValue);
+	free(env);
 	return (NULL);
 }
