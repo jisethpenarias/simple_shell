@@ -14,11 +14,11 @@ int builtins(char *firstToken)
 
 	builtins_t built[] = {
 		{"env", _print_env},
-		{"exit", NULL},
+		{"exit", _exit_hsh},
 		{NULL, NULL}
 	};
 
-	printf("%s\n", firstToken);
+
 	i = 0;
 
 	while (built[i].name != NULL)

@@ -12,29 +12,38 @@ char *_which(char *pathVariable, char *commandSearched)
 {
 	struct stat buf;
 	char *dirObtained;
-	char error_info[100];
+	/*char error_info[100];*/
 	char *dirCopied;
+	char *pathHelper;
 
-	dirObtained = strtok(pathVariable, ":");
+	pathHelper = malloc(sizeof(char) * MAX_BUFFER_SIZE);
+	if (pathHelper == NULL)
+	{
+		return (NULL);
+	}
+	pathHelper = _strcpy(pathHelper, pathVariable);
+
+	dirObtained = strtok(pathHelper, ":");
 	while (dirObtained != NULL)
 	{
-		dirCopied = strdup(dirObtained);
+		dirCopied = malloc(sizeof(char) * MAX_BUFFER_SIZE);
+		if (dirCopied == NULL)
+		{
+			return (NULL);
+		}
+		dirCopied = _strcpy(dirCopied, dirObtained);
 		strcat(dirCopied, "/");
 		strcat(dirCopied, commandSearched);
-		if (stat(dirCopied, &buf) == 0)
+		if (stat(dirCopied, &buf) != 0)
 		{
-			return (dirCopied);
+			/*free(dirCopied);*/
+			dirCopied = NULL;
 		}
+		else
+			break;
 		dirObtained = strtok(NULL, ":");
 	}
 
-	if (dirObtained == NULL)
-	{
-		sprintf(error_info, "hsh: %s: not found\n",
-			commandSearched);
-		write(2, error_info, _strlen(error_info));
-	}
-
-	free(dirCopied);
-	return (NULL);
+	/*free(pathHelper);*/
+	return (dirCopied ? dirCopied : commandSearched);
 }

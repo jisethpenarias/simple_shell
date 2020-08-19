@@ -1,46 +1,52 @@
 #include "simple_shell.h"
 
-int main(void)
-{
+/**
+ *hsh- method emulating sh
+ *@av: values
+ *@env: environment
+ * Return: int
+ */
 
-	char *line = NULL;
-        size_t len;
+int hsh(char **av, char **env)
+{
+	char *line == NULL, path, commandPath;
+	size_t len;
 	char **commandTokens;
 	int status_builtins;
-	char *path;
-	char *commandPath;
+	/*int cleaner;*/
+	int mode = 1;
 
+	(void) av;
+	(void) env;
+
+	isatty(STDIN_FILENO) == 0 ? mode = 0 : mode;
 	while (1)
 	{
-		write (STDIN_FILENO, "$ ", 2);
-
-		if(getline(&line, &len, stdin) == EOF)
+		mode == 1 ? write(STDIN_FILENO, "$ ", 2) : mode;
+		/*cleaner = 0;*/
+		if (getline(&line, &len, stdin) == EOF)
 		{
-			write(STDIN_FILENO, "\n", 1);
+			if (mode == 1)
+				write(STDIN_FILENO, "\n", 1);
 			free(line);
-			exit(0);
+			return (0);
 		}
-
 		commandTokens = tokenizer(line);
 		status_builtins = builtins(commandTokens[0]);
-		if(status_builtins == -1 || status_builtins == 0)
+		if (status_builtins == -1 || status_builtins == 0)
 		{
-			free(line);
-			free(commandTokens);
+			/*free(line);*/
+			/*free(commandTokens);*/
 		}
-		if(status_builtins == -1)
+		if (status_builtins == -1)
 			exit(1);
-		if(status_builtins == 0)
+		if (status_builtins == 0)
 			continue;
-
-		path = _getenv("PATH");
-		commandPath = _which(path, commandTokens[0]);
+		path = _getenv();
+		if (path == NULL)
+			commandPath = commandTokens[0];
+		else
+			commandPath = _which(path, commandTokens[0]);
 		forking(commandPath, commandTokens);
-
-		/*free(line);
-		free(commandTokens);
-		free(commandPath);
-		free(path);*/
 	}
-
 }

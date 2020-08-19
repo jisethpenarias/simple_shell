@@ -29,10 +29,14 @@ typedef struct builtins_s
 	int (*fun)(void);
 } builtins_t;
 
+int _exit_hsh(void);
+int hsh(char **av, char **env);
+int exec_noInteracti(char **av);
+
 char *_which(char *pathVariable, char *commandSearched);
 int _getline(char **lineptr, size_t *size, int stream);
 int _execve(char *executableDir, char **commands, char **env);
-char *_getenv(char *var);
+char *_getenv();
 int builtins(char *firstToken);
 int forking(char *executableDir, char **commands);
 int _print_env(void);
