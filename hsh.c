@@ -48,6 +48,5 @@ int hsh(char **av, char **env)
 
 		free(commandTokens);
 		free(path);
-		free(line);
 	}
 }
