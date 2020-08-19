@@ -18,7 +18,7 @@ int _getline(char **lineptr, size_t *size, int stream)
 		return (-1);
 	else if (rd < 0)
 	{
-		free(*lineptr);
+		/*free(*lineptr);*/
 		return (-1);
 		/*crear un exit.*/
 	}

@@ -2,17 +2,17 @@
 
 /**
  * _getenv - Gets an environment variable.
- * @var: Environment variable to get.
  *
  * Return: Pointer to an environment variable or NULL if not found.
  */
 
-char *_getenv(char *var)
+char *_getenv()
 {
 	char *value;
 	int i = 0;
 	char *env;
 	char *envValue;
+	char var[5] = "PATH";
 
 	envValue = malloc(sizeof(char) * MAX_BUFFER_SIZE);
 	if (envValue == NULL)
@@ -34,7 +34,6 @@ char *_getenv(char *var)
 		}
 		i++;
 	}
-	/*free(envValue);
-	  free(env);*/
+
 	return (NULL);
 }

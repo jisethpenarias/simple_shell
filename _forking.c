@@ -11,23 +11,25 @@
 
 int forking(char *executableDir, char **commands)
 {
-	pid_t value;
+	pid_t pid_child;
 	int status;
 	char error_info[100];
 
-	value = fork();
-	if (value == -1)
-		return (1);
+	pid_child = fork();
+	if (pid_child == -1)
+		return (-1);
 
-	if (value == 0 && _execve(executableDir, commands, NULL) == -1)
+	if (pid_child == 0 && execve(executableDir, commands, NULL) == -1)
 	{
 		sprintf(error_info, "hsh: %s: not found\n", *commands);
-	        write(2, error_info, _strlen(error_info));
-	        exit(1);
+		write(2, error_info, _strlen(error_info));
+		exit(1);
 	}
 	else
 	{
-		wait(&status);
+		pid_child = wait(&status);
+		if (WIFEXITED(status))
+			return (status);
 	}
 
 	return (0);
