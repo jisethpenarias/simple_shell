@@ -12,10 +12,7 @@ int hsh(char **av, char **env)
 	char *line = NULL, *path, *commandPath;
 	size_t len;
 	char **commandTokens;
-	int status_builtins;
-
-	/*int cleaner;*/
-	int mode = 1;
+	int status_builtins, mode = 1;
 
 	(void) av;
 	(void) env;
@@ -24,7 +21,6 @@ int hsh(char **av, char **env)
 	while (1)
 	{
 		mode == 1 ? write(STDIN_FILENO, "$ ", 2) : mode;
-		/*cleaner = 0;*/
 		if (getline(&line, &len, stdin) == EOF)
 		{
 			if (mode == 1)
