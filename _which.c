@@ -33,8 +33,8 @@ char *_which(char *pathVariable, char *commandSearched)
 			return (NULL);
 		}
 		dirCopied = _strcpy(dirCopied, dirObtained);
-		strcat(dirCopied, "/");
-		strcat(dirCopied, commandSearched);
+		_strcat(dirCopied, "/");
+		_strcat(dirCopied, commandSearched);
 
 		if (stat(dirCopied, &buf) != 0)
 		{
@@ -46,6 +46,6 @@ char *_which(char *pathVariable, char *commandSearched)
 		dirObtained = strtok(NULL, ":");
 	}
 
-	/*free(pathHelper);*/
+	free(pathHelper);
 	return (dirCopied ? dirCopied : commandSearched);
 }

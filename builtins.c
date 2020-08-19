@@ -22,7 +22,7 @@ int builtins(char *firstToken)
 
 	while (built[i].name != NULL)
 	{
-		if (strcmp(firstToken, built[i].name) == 0)
+		if (_strcmp(firstToken, built[i].name) == 0)
 		{
 			status = (built[i].fun)();
 			return (status);

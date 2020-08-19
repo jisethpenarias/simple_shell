@@ -30,11 +30,11 @@ int hsh(char **av, char **env)
 		}
 		commandTokens = tokenizer(line);
 		status_builtins = builtins(commandTokens[0]);
-		if (status_builtins == -1 || status_builtins == 0)
-		{
-			/*free(line);*/
-			/*free(commandTokens);*/
-		}
+		/*if (status_builtins == -1 || status_builtins == 0)
+		  {
+		  free(line);
+		  free(commandTokens);
+		  }*/
 		if (status_builtins == -1)
 			exit(1);
 		if (status_builtins == 0)
@@ -45,5 +45,9 @@ int hsh(char **av, char **env)
 		else
 			commandPath = _which(path, commandTokens[0]);
 		forking(commandPath, commandTokens);
+
+		free(commandTokens);
+		free(path);
+		free(line);
 	}
 }
