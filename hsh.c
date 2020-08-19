@@ -13,6 +13,7 @@ int hsh(char **av, char **env)
 	size_t len;
 	char **commandTokens;
 	int status_builtins;
+
 	/*int cleaner;*/
 	int mode = 1;
 

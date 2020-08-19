@@ -27,6 +27,7 @@ char *_which(char *pathVariable, char *commandSearched)
 	while (dirObtained != NULL)
 	{
 		dirCopied = malloc(sizeof(char) * MAX_BUFFER_SIZE);
+
 		if (dirCopied == NULL)
 		{
 			return (NULL);
@@ -34,6 +35,7 @@ char *_which(char *pathVariable, char *commandSearched)
 		dirCopied = _strcpy(dirCopied, dirObtained);
 		strcat(dirCopied, "/");
 		strcat(dirCopied, commandSearched);
+
 		if (stat(dirCopied, &buf) != 0)
 		{
 			/*free(dirCopied);*/

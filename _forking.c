@@ -8,12 +8,13 @@
  * Return: 0 on success.
  */
 
-
 int forking(char *executableDir, char **commands)
 {
 	pid_t pid_child;
 	int status;
 	char error_info[100];
+	int i;
+
 
 	pid_child = fork();
 	if (pid_child == -1)

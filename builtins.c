@@ -18,17 +18,16 @@ int builtins(char *firstToken)
 		{NULL, NULL}
 	};
 
-
 	i = 0;
 
-	while (built[i].name != NULL)
-	{
-		if (strcmp(firstToken, built[i].name) == 0)
-		{
-			status = (built[i].fun)();
-			return (status);
-		}
-		i++;
-	}
-	return (1);
+        while (built[i].name != NULL)
+        {
+                if (strcmp(firstToken, built[i].name) == 0)
+                {
+                        status = (built[i].fun)();
+                        return (status);
+                }
+                i++;
+        }
+        return (1);
 }
