@@ -16,16 +16,18 @@ char **tokenizer(char *line)
 
 	commandCount = 0;
 
-	commandTokens = malloc(sizeof(char) * MAX_BUFFER_SIZE);
-	if(!commandTokens)
+	commandTokens = (char **)malloc(sizeof(char) *
+				       _strlen(line) * _strlen(line));
+
+	if (!commandTokens)
 	{
 		/* print error message, or exit function*/
 		return (NULL);
 	}
 
 	command = strtok(line, SPLIT_STRING);
-        while (command != NULL)
-        {
+	while (command != NULL)
+	{
 		commandTokens[commandCount] = command;
 		command = strtok(NULL, SPLIT_STRING);
 		commandCount++;
