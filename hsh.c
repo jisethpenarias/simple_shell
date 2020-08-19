@@ -9,7 +9,7 @@
 
 int hsh(char **av, char **env)
 {
-	char *line == NULL, path, commandPath;
+	char *line = NULL, *path, *commandPath;
 	size_t len;
 	char **commandTokens;
 	int status_builtins;
