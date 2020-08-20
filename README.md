@@ -41,7 +41,7 @@ The project was developed with the following requirements:
 * `pwd - given you the current working directory.
 
 **File information**
-in process..
+in process...
 
 **Authors**
 - Vanessa Sotomayor 
