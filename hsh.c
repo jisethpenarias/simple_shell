@@ -21,14 +21,13 @@ int hsh(char **av, char **env)
 	{
 		mode == 1 ? write(STDIN_FILENO, "$ ", 2) : mode;
 		read = getline(&line, &len, stdin);
-		if (read == EOF)
+		if (read == EOF || _strcmp(line, "exit\n") == 0)
 		{
 			free(line), write(STDIN_FILENO, "\n", 1);
 			return (0);
 		}
 		else
 		{
-
 			if (read >= 1 && have_space(line))
 			{
 				commandTokens = tokenizer(line);
