@@ -13,7 +13,6 @@ int hsh(char **av, char **env)
 	size_t len;
 	char **commandTokens;
 	int read = 0, status_builtins, mode = 1;
-
 	(void)av;
 	(void)env;
 
@@ -29,7 +28,8 @@ int hsh(char **av, char **env)
 		}
 		else
 		{
-			if (read > 1)
+
+			if (read >= 1 && have_space(line))
 			{
 				commandTokens = tokenizer(line);
 				status_builtins = builtins(commandTokens[0]);
@@ -41,12 +41,33 @@ int hsh(char **av, char **env)
 				if (path == NULL)
 					commandPath = commandTokens[0];
 				else
-					commandPath = _which(path, commandTokens[0]);
-
+					commandPath = _which(path,
+							     commandTokens[0]);
 				forking(commandPath, commandTokens);
 				free(commandTokens);
 				free(path);
 			}
 		}
 	}
+}
+
+/**
+ *have_space - this function validates characters other than spacesh.
+ *@command: characters to validate.
+ *
+ * Return: 0
+ */
+
+int have_space(char *command)
+{
+	unsigned int i;
+
+	for (i = 0; i < strlen(command) - 1; i++)
+	{
+		if (command[i] != ' ')
+		{
+			return (1);
+		}
+	}
+	return (0);
 }

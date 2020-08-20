@@ -32,7 +32,7 @@ typedef struct builtins_s
 int _exit_hsh(void);
 int hsh(char **av, char **env);
 int exec_noInteracti(char **av);
-
+int have_space(char *command);
 char *_which(char *pathVariable, char *commandSearched);
 int _getline(char **lineptr, size_t *size, int stream);
 int _execve(char *executableDir, char **commands, char **env);
