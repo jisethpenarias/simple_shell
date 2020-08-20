@@ -90,3 +90,33 @@ char *_strcat(char *dest, char *src)
 	dest[i] = '\0';
 	return (dest);
 }
+
+/**
+ * _calloc - Allocates memory for an array.
+ * @nmemb: Size of space to allocate.
+ * @size: Size of bytes of the type of variable.
+ *
+ * Return: Pointer to the allocated memory.
+ */
+
+void *_calloc(unsigned int nmemb, unsigned int size)
+{
+	char *pointer;
+	unsigned int i;
+	unsigned int tamano;
+
+	tamano = nmemb * size;
+
+	if (nmemb == 0 || size == 0)
+		return (NULL);
+	pointer = malloc(nmemb * size);
+	if (pointer == NULL)
+	{
+		return (NULL);
+	}
+	for (i = 0; i < tamano; i++)
+	{
+		pointer[i] = 0;
+	}
+	return (pointer);
+}

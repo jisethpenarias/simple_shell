@@ -41,6 +41,7 @@ int builtins(char *firstToken);
 int forking(char *executableDir, char **commands);
 int _print_env(void);
 
+void free_dpointer(char **command);
 /*funciones de string*/
 
 int _strcmp(char *s1, char *s2);
@@ -49,5 +50,5 @@ int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 char **tokenizer(char *line);
-
+void *_calloc(unsigned int nmemb, unsigned int size);
 #endif

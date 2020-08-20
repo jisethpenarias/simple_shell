@@ -43,7 +43,7 @@ int hsh(char **av, char **env)
 					commandPath = _which(path,
 							     commandTokens[0]);
 				forking(commandPath, commandTokens);
-				free(commandTokens);
+				free_dpointer(commandTokens);
 				free(path);
 			}
 		}

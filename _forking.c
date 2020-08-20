@@ -22,7 +22,7 @@ int forking(char *executableDir, char **commands)
 	{
 		sprintf(error_info, "hsh: %s: not found\n", *commands);
 		write(2, error_info, _strlen(error_info));
-		exit(1);
+		return (127);
 	}
 	else
 	{
