@@ -20,7 +20,7 @@ int hsh(char **av, char **env)
 	{
 		mode == 1 ? write(STDIN_FILENO, "$ ", 2) : mode;
 		read = getline(&line, &len, stdin);
-		if (read == EOF || _strcmp(line, "exit\n") == 0)
+		if (read == EOF || _strncmp(line, "exit\n", 4) == 0)
 		{
 			free(line), write(STDIN_FILENO, "\n", 1);
 			return (0);
@@ -40,12 +40,11 @@ int hsh(char **av, char **env)
 					commandPath = commandTokens[0];
 				else
 					commandPath = _which(path,
-							     commandTokens[0]);
+							commandTokens[0]);
 				forking(commandPath, commandTokens);
 				free(path);
-			}
-			if (commandTokens)
-			{
+				if (_strcmp(commandPath, commandTokens[0]) != 0)
+					free(commandPath);
 				free_dpointer(commandTokens);
 			}
 		}

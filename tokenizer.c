@@ -9,16 +9,13 @@
 
 char **tokenizer(char *line)
 {
-
 	char **commandTokens = NULL;
-	char *command = NULL;
+	char *command = NULL, *buff = NULL;
 	int commandCount = 0, i;
-	char *buff = NULL;
 
 	buff = malloc(sizeof(char) * _strlen(line) + 1);
 	if (buff == NULL)
 		return (NULL);
-
 	_strcpy(buff, line);
 	command = strtok(line, SPLIT_STRING);
 	while (command != NULL)
@@ -30,18 +27,14 @@ char **tokenizer(char *line)
 	if (commandTokens == NULL)
 	{
 		free(buff);
-		return(NULL);
+		return (NULL);
 	}
-
 	command = strtok(buff, SPLIT_STRING);
-
 	commandCount = 0;
 	while (command)
 	{
-		/*commandTokens[commandCount] = malloc(sizeof(char) *
-		  _strlen(command) + 1);*/
 		commandTokens[commandCount] = _calloc(_strlen(command) + 2,
-						      sizeof(char *));
+				sizeof(char *));
 		if (commandTokens[commandCount] == NULL)
 		{
 			for (i = 0; commandTokens[commandCount]; i++)
@@ -50,7 +43,7 @@ char **tokenizer(char *line)
 			return (NULL);
 		}
 		_strcpy(commandTokens[commandCount], command);
-	        commandCount++;
+		commandCount++;
 		command = strtok(NULL, SPLIT_STRING);
 	}
 	commandTokens[commandCount] = NULL;

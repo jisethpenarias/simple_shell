@@ -2,6 +2,8 @@
 
 /**
  * _getenv - Gets an environment variable.
+ * @variable: PATH variable.
+ * @env: Environment variable.
  *
  * Return: Pointer to an environment variable or NULL if not found.
  */
@@ -23,7 +25,7 @@ char *_getenv(char *variable, char **env)
 		value2 = _strdup(strtok(NULL, "="));
 		if (_strcmp(enValue1, value1) == 0)
 		{
-		        break;
+			break;
 		}
 		free(enValue2);
 		free(value2);

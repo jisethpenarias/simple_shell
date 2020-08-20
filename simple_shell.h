@@ -26,7 +26,7 @@ extern char **environ;
 typedef struct builtins_s
 {
 	char *name;
-	int (*fun)(void);
+	int (*fun)();
 } builtins_t;
 
 int _exit_hsh(void);
@@ -42,9 +42,11 @@ int forking(char *executableDir, char **commands);
 int _print_env(void);
 
 void free_dpointer(char **command);
+
 /*funciones de string*/
 
 int _strcmp(char *s1, char *s2);
+int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strdup(char *str);
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
@@ -53,4 +55,5 @@ char **tokenizer(char *line);
 char *_memset(char *s, char b, unsigned int n);
 void *_calloc(unsigned int nmemb, unsigned int size);
 /*void *_calloc(unsigned int nmemb, unsigned int size);*/
+
 #endif

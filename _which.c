@@ -38,8 +38,8 @@ char *_which(char *pathVariable, char *commandSearched)
 
 		if (stat(dirCopied, &buf) != 0)
 		{
-			/*free(dirCopied);*/
-			dirCopied = NULL;
+			free(dirCopied);
+			/*dirCopied = NULL;*/
 		}
 		else
 			break;
@@ -47,5 +47,6 @@ char *_which(char *pathVariable, char *commandSearched)
 	}
 
 	free(pathHelper);
-	return (dirCopied ? dirCopied : commandSearched);
+	/*printf("%s\n", dirCopied);*/
+	return (dirObtained ? dirCopied : commandSearched);
 }

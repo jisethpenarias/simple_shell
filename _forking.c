@@ -17,7 +17,6 @@ int forking(char *executableDir, char **commands)
 	pid_child = fork();
 	if (pid_child == -1)
 		return (-1);
-
 	if (pid_child == 0 && execve(executableDir, commands, NULL) == -1)
 	{
 		sprintf(error_info, "hsh: %s: not found\n", *commands);

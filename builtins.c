@@ -11,15 +11,11 @@ int builtins(char *firstToken)
 {
 	int i;
 	int status = 0;
-
 	builtins_t built[] = {
 		{"env", _print_env},
-		{"exit", _exit_hsh},
 		{NULL, NULL}
 	};
-
 	i = 0;
-
 	while (built[i].name != NULL)
 	{
 		if (_strcmp(firstToken, built[i].name) == 0)
