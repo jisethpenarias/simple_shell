@@ -19,4 +19,3 @@ int _print_env(void)
 	}
 	return (0);
 }
-
