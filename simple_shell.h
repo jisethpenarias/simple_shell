@@ -13,7 +13,7 @@
 #include <unistd.h>
 
 #define MAX_BUFFER_SIZE 1024
-#define SPLIT_STRING "\n\t\r "
+#define SPLIT_STRING "\n\t\r\a "
 
 extern char **environ;
 
@@ -36,7 +36,7 @@ int have_space(char *command);
 char *_which(char *pathVariable, char *commandSearched);
 int _getline(char **lineptr, size_t *size, int stream);
 int _execve(char *executableDir, char **commands, char **env);
-char *_getenv();
+char *_getenv(char *variable, char **env);
 int builtins(char *firstToken);
 int forking(char *executableDir, char **commands);
 int _print_env(void);
@@ -50,5 +50,7 @@ int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 char **tokenizer(char *line);
+char *_memset(char *s, char b, unsigned int n);
 void *_calloc(unsigned int nmemb, unsigned int size);
+/*void *_calloc(unsigned int nmemb, unsigned int size);*/
 #endif

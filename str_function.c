@@ -48,12 +48,13 @@ int _strlen(char *s)
  *
  * Return: desc
  */
+
 char *_strcpy(char *dest, char *src)
 {
 	int i;
 
 	i = 0;
-	while (*(src + i) != 0)
+	while (*(src + i))
 	{
 		*(dest + i) = *(src + i);
 		i++;
@@ -92,31 +93,36 @@ char *_strcat(char *dest, char *src)
 }
 
 /**
- * _calloc - Allocates memory for an array.
- * @nmemb: Size of space to allocate.
- * @size: Size of bytes of the type of variable.
+ * _strdup - Return a pointer to a newlly allocate space in memory..
+ * @str: Pointer to a string.
  *
- * Return: Pointer to the allocated memory.
+ * Return: Return value of malloc.
  */
 
-void *_calloc(unsigned int nmemb, unsigned int size)
+char *_strdup(char *str)
 {
-	char *pointer;
+	char *cadena;
 	unsigned int i;
-	unsigned int tamano;
+	unsigned int j;
 
-	tamano = nmemb * size;
-
-	if (nmemb == 0 || size == 0)
+	if (str == NULL)
 		return (NULL);
-	pointer = malloc(nmemb * size);
-	if (pointer == NULL)
+	i = 0;
+	while (str[i] != '\0')
+	{
+		i++;
+	}
+	cadena = (char *) malloc((i + 1) * sizeof(char));
+	if (cadena == NULL)
 	{
 		return (NULL);
 	}
-	for (i = 0; i < tamano; i++)
+	j = 0;
+	while (str[j] != '\0')
 	{
-		pointer[i] = 0;
+		cadena[j] = str[j];
+		j++;
 	}
-	return (pointer);
+	cadena[j] = '\0';
+	return (cadena);
 }

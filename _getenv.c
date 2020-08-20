@@ -6,34 +6,32 @@
  * Return: Pointer to an environment variable or NULL if not found.
  */
 
-char *_getenv()
+char *_getenv(char *variable, char **env)
 {
-	char *value;
+	char *value1 = NULL, *value2 = NULL;
 	int i = 0;
-	char *env;
-	char *envValue;
-	char var[5] = "PATH";
+	char *enValue1 = NULL, *enValue2 = NULL;
 
-	envValue = malloc(sizeof(char) * MAX_BUFFER_SIZE);
-	if (envValue == NULL)
-		return (NULL);
+	enValue1 = _strdup(variable);
 
-	env = malloc(sizeof(char) * MAX_BUFFER_SIZE);
-	if (env == NULL)
-		return (NULL);
-
-	while (environ[i] != NULL)
+	while (env[i] && env)
 	{
-		_strcpy(env, environ[i]);
-		value = strtok(env, "=");
-		if (_strcmp(value, var) == 0)
+		enValue2 = NULL;
+		value2 = NULL;
+		enValue2 = _strdup(env[i]);
+		value1 = strtok(enValue2, "=");
+		value2 = _strdup(strtok(NULL, "="));
+		if (_strcmp(enValue1, value1) == 0)
 		{
-			_strcpy(envValue, strtok(NULL, "="));
-			/*free(env);*/
-			return (envValue);
+		        break;
 		}
+		free(enValue2);
+		free(value2);
 		i++;
 	}
+	free(enValue2);
+	enValue2 = NULL;
+	free(enValue1);
 
-	return (NULL);
+	return (value2);
 }

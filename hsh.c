@@ -14,7 +14,6 @@ int hsh(char **av, char **env)
 	char **commandTokens;
 	int read = 0, status_builtins, mode = 1;
 	(void)av;
-	(void)env;
 
 	isatty(STDIN_FILENO) == 0 ? mode = 0 : mode;
 	while (1)
@@ -36,15 +35,18 @@ int hsh(char **av, char **env)
 					exit(1);
 				if (status_builtins == 0)
 					continue;
-				path = _getenv();
+				path = _getenv("PATH", env);
 				if (path == NULL)
 					commandPath = commandTokens[0];
 				else
 					commandPath = _which(path,
 							     commandTokens[0]);
 				forking(commandPath, commandTokens);
-				free_dpointer(commandTokens);
 				free(path);
+			}
+			if (commandTokens)
+			{
+				free_dpointer(commandTokens);
 			}
 		}
 	}

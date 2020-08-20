@@ -26,7 +26,7 @@ char **tokenizer(char *line)
 		commandCount++;
 		command = strtok(NULL, SPLIT_STRING);
 	}
-	commandTokens = _calloc((commandCount + 2), sizeof(char*));
+	commandTokens = _calloc((commandCount + 2), sizeof(char *));
 	if (commandTokens == NULL)
 	{
 		free(buff);
@@ -38,12 +38,14 @@ char **tokenizer(char *line)
 	commandCount = 0;
 	while (command)
 	{
-		commandTokens[commandCount] = malloc(sizeof(char) *
-						     _strlen(command) + 2);
+		/*commandTokens[commandCount] = malloc(sizeof(char) *
+		  _strlen(command) + 1);*/
+		commandTokens[commandCount] = _calloc(_strlen(command) + 2,
+						      sizeof(char *));
 		if (commandTokens[commandCount] == NULL)
 		{
 			for (i = 0; commandTokens[commandCount]; i++)
-				free(commandTokens[commandCount]);
+				free(commandTokens[i]);
 			free(commandTokens), free(buff);
 			return (NULL);
 		}
