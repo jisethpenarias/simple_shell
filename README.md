@@ -41,6 +41,8 @@ The project was developed with the following requirements:
 
 `$`
 
+**Flowchart**
+![flujo](https://user-images.githubusercontent.com/66282703/90853345-7f83a480-e33f-11ea-8eca-afb8c755cc14.jpeg)
 
 **Authors**
 - Vanessa Sotomayor 
