@@ -1,3 +1,4 @@
+ <a href="logo github"><img src="https://www.holbertonschool.com/holberton-logo.png" align="middle" width=“409” height=“128”></a>
 # PROJECT SIMPLE SHELL
 
 **Introduction**
@@ -12,7 +13,7 @@ The project was developed with the following requirements:
 - The files will be compiled on Ubuntu 14.04 LTS
 - C programs and functions will be compiled with `gcc 4.8.4` using the following flags `-Wall -Werror -Wextra -pedantic and -g`. After compiling memcheck is validated: `valgrind --tool=memcheck --leak-check=yes ./hsh`.
 
-**how to run this simulation of sh?**
+**How to run this simulation of sh?**
 
 1. Pull master branch: 
 
@@ -22,26 +23,26 @@ The project was developed with the following requirements:
 
   `-Wall -Werror -Wextra -pedantic -g simple_shell.h *.c -o hsh`
 
-3. Run the output file locally to start:
+**How to test**
 
-  `$ ./hsh`
+1. **Mode interactive:** Run the output file locally to start:
 
-4.You can start typing with a simple command like:
+`$ ./hsh`
 
-  `$ echo welcome`
+`$ /bin/ls`
 
-**Commands you can use**
+`hsh main.c shell.c`
 
-* `cat` - prints and concatenates files to the standard output
-* `cp` -copies a file into another file
-* `grep` - helps to search for a file in a specific pattern
-* `less` - will let you go backward and forward in the files
-* `ls`- will list all files and directories in current working directory
-* `mv` - helps to move one file into another file
-* `pwd - given you the current working directory.
+2. **Mode no-interactive:** You can start typing with a simple command like:
 
-**File information**
-in process...
+`$ echo "/bin/ls" | ./hsh`
+
+`hsh main.c shell.c test_ls_2`
+
+`$`
+
+**Flowchart**
+![flujo](https://user-images.githubusercontent.com/66282703/90853345-7f83a480-e33f-11ea-8eca-afb8c755cc14.jpeg)
 
 **Authors**
 - Vanessa Sotomayor 
