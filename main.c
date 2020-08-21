@@ -14,7 +14,7 @@ int main(int ac, char *av[], char **env)
 	int runing = 0;
 	/*unsigned int executionCount = 1;*/
 
-	/*signal(SIGINT, _signal_handle);*/
+	signal(SIGINT, _signal_handle);
 
 	if (ac > 1)
 		exec_noInteracti(av);

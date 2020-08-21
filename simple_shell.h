@@ -34,14 +34,12 @@ int hsh(char **av, char **env);
 int exec_noInteracti(char **av);
 int have_space(char *command);
 char *_which(char *pathVariable, char *commandSearched);
-int _getline(char **lineptr, size_t *size, int stream);
-int _execve(char *executableDir, char **commands, char **env);
 char *_getenv(char *variable, char **env);
 int builtins(char *firstToken);
 int forking(char *executableDir, char **commands);
 int _print_env(void);
-
 void free_dpointer(char **command);
+void _signal_handle(int singint);
 
 /*funciones de string*/
 
@@ -54,6 +52,5 @@ char *_strcat(char *dest, char *src);
 char **tokenizer(char *line);
 char *_memset(char *s, char b, unsigned int n);
 void *_calloc(unsigned int nmemb, unsigned int size);
-/*void *_calloc(unsigned int nmemb, unsigned int size);*/
 
 #endif

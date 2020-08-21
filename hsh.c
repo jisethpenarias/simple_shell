@@ -12,7 +12,7 @@ int hsh(char **av, char **env)
 	char *line = NULL, *path, *commandPath;
 	size_t len;
 	char **commandTokens;
-	int read = 0, status_builtins, mode = 1;
+	int read = 0, status_builtins, mode = 1, exit_stat = 0;
 	(void)av;
 
 	isatty(STDIN_FILENO) == 0 ? mode = 0 : mode;
@@ -22,8 +22,8 @@ int hsh(char **av, char **env)
 		read = getline(&line, &len, stdin);
 		if (read == EOF || _strncmp(line, "exit\n", 4) == 0)
 		{
-			free(line), write(STDIN_FILENO, "\n", 1);
-			return (0);
+			free(line);
+			return (exit_stat);
 		}
 		else
 		{
@@ -41,7 +41,7 @@ int hsh(char **av, char **env)
 				else
 					commandPath = _which(path,
 							commandTokens[0]);
-				forking(commandPath, commandTokens);
+				exit_stat = forking(commandPath, commandTokens);
 				free(path);
 				if (_strcmp(commandPath, commandTokens[0]) != 0)
 					free(commandPath);

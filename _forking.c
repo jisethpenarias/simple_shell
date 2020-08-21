@@ -11,24 +11,29 @@
 int forking(char *executableDir, char **commands)
 {
 	pid_t pid_child;
-	int status;
+	int status, exit_st;
 	char error_info[100];
+	struct stat str;
 
-	pid_child = fork();
-	if (pid_child == -1)
-		return (-1);
-	if (pid_child == 0 && execve(executableDir, commands, NULL) == -1)
+	if (stat(executableDir, &str) == 0)
+	{
+		pid_child = fork();
+		if (pid_child == 0)
+		{
+			execve(executableDir, commands, NULL);
+		}
+		wait(&status);
+		if (WIFEXITED(status))
+		{
+			exit_st = WEXITSTATUS(status);
+			return (exit_st);
+		}
+	}
+	else
 	{
 		sprintf(error_info, "hsh: %s: not found\n", *commands);
 		write(2, error_info, _strlen(error_info));
 		return (127);
 	}
-	else
-	{
-		pid_child = wait(&status);
-		if (WIFEXITED(status))
-			return (status);
-	}
-
 	return (0);
 }
