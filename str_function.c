@@ -28,9 +28,9 @@ int _strcmp(char *s1, char *s2)
  * Return: c
  */
 
-int _strlen(char *s)
+unsigned int _strlen(char *s)
 {
-	int c;
+	unsigned int c;
 
 	c = 0;
 

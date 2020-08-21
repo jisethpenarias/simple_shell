@@ -9,9 +9,8 @@
 
 int hsh(char **av, char **env)
 {
-	char *line = NULL, *path, *commandPath;
+	char *line = NULL, *path, *cmdPath, **cmdTokens;
 	size_t len;
-	char **commandTokens;
 	int read = 0, status_builtins, mode = 1, exit_stat = 0;
 	(void)av;
 
@@ -23,29 +22,30 @@ int hsh(char **av, char **env)
 		if (read == EOF || _strncmp(line, "exit\n", 4) == 0)
 		{
 			free(line);
+			if (read == EOF && isatty(STDIN_FILENO))
+				write(STDOUT_FILENO, "\n", 1);
 			return (exit_stat);
 		}
 		else
 		{
 			if (read >= 1 && have_space(line))
 			{
-				commandTokens = tokenizer(line);
-				status_builtins = builtins(commandTokens[0]);
+				cmdTokens = tokenizer(line);
+				status_builtins = builtins(cmdTokens[0]);
 				if (status_builtins == -1)
 					exit(1);
 				if (status_builtins == 0)
 					continue;
 				path = _getenv("PATH", env);
 				if (path == NULL)
-					commandPath = commandTokens[0];
+					cmdPath = cmdTokens[0];
 				else
-					commandPath = _which(path,
-							commandTokens[0]);
-				exit_stat = forking(commandPath, commandTokens);
+					cmdPath = _which(path, cmdTokens[0]);
+				exit_stat = forking(cmdPath, cmdTokens);
 				free(path);
-				if (_strcmp(commandPath, commandTokens[0]) != 0)
-					free(commandPath);
-				free_dpointer(commandTokens);
+				if (_strcmp(cmdPath, cmdTokens[0]) != 0)
+					free(cmdPath);
+				free_dpointer(cmdTokens);
 			}
 		}
 	}

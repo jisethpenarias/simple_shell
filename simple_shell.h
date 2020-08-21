@@ -46,7 +46,7 @@ void _signal_handle(int singint);
 int _strcmp(char *s1, char *s2);
 int _strncmp(const char *s1, const char *s2, size_t n);
 char *_strdup(char *str);
-int _strlen(char *s);
+unsigned int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 char **tokenizer(char *line);
