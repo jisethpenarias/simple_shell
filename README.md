@@ -26,15 +26,20 @@ The project was developed with the following requirements:
 **How to test**
 
 1. **Mode interactive:** Run the output file locally to start:
-`$ ./hsh
- $ /bin/ls
- hsh main.c shell.c`
 
-2. **Mode no-interactive: **You can start typing with a simple command like:
+`$ ./hsh`
 
-`$ echo "/bin/ls" | ./hsh
-hsh main.c shell.c test_ls_2
-$`
+`$ /bin/ls`
+
+`hsh main.c shell.c`
+
+2. **Mode no-interactive:** You can start typing with a simple command like:
+
+`$ echo "/bin/ls" | ./hsh`
+
+`hsh main.c shell.c test_ls_2`
+
+`$`
 
 
 **Authors**
