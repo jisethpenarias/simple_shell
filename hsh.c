@@ -62,7 +62,7 @@ int have_space(char *command)
 {
 	unsigned int i;
 
-	for (i = 0; i < strlen(command) - 1; i++)
+	for (i = 0; i < _strlen(command) - 1; i++)
 	{
 		if (command[i] != ' ')
 		{
